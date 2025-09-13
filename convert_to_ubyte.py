@@ -10,8 +10,8 @@ IMG_SIZE = 28
 CHARS = string.digits + string.ascii_uppercase + string.ascii_lowercase
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_folder = os.path.join(script_dir, "Datasets", "GoogleFonts")
-output_folder = os.path.join(script_dir, "Datasets", "GoogleFonts-ubytes")
+input_folder = os.path.join(script_dir, "Datasets", "DownloadedFonts")
+output_folder = os.path.join(script_dir, "Datasets", "GoogleFonts")
 
 os.makedirs(os.path.join(output_folder, "Train"), exist_ok=True)
 os.makedirs(os.path.join(output_folder, "Test"), exist_ok=True)
@@ -42,8 +42,11 @@ for root, dirs, files in os.walk(input_folder):
     for file in files:
         if file.lower().endswith(('.ttf', '.otf')):
             all_fonts.append(os.path.join(root, file))
+        else:
+            os.remove(os.path.join(root, file))
 
-random.shuffle(all_fonts)
+
+# random.shuffle(all_fonts)
 split_index = int(len(all_fonts) * 0.86)
 
 # Process fonts and save to Train/Test folders
@@ -59,4 +62,4 @@ for index, font_path in enumerate(all_fonts):
 
     images = [create_image(c, font_path) for c in CHARS]
     save_ubyte(images, out_file)
-    print(f"Saved {len(images)} images for font {font_name} at {out_file}")
+    print(f"[{index}/{len(all_fonts)}]: Saved {len(images)} images for font {font_name} at {out_file}")
