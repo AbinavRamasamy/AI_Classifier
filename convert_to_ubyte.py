@@ -20,7 +20,11 @@ def create_image(char, font_path):
     font = ImageFont.truetype(font_path, size=IMG_SIZE)
     image = Image.new('L', (IMG_SIZE, IMG_SIZE), color=0)
     draw = ImageDraw.Draw(image)
-    w, h = draw.textsize(char, font=font)
+
+    bbox = draw.textbbox((0, 0), char, font=font)
+    w = bbox[2] - bbox[0]
+    h = bbox[3] - bbox[1]
+
     draw.text(((IMG_SIZE - w) / 2, (IMG_SIZE - h) / 2), char, fill=255, font=font)
     return np.array(image, dtype=np.uint8)
 
