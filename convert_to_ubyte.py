@@ -60,6 +60,12 @@ for index, font_path in enumerate(all_fonts):
     if os.path.exists(out_file):
         continue
 
-    images = [create_image(c, font_path) for c in CHARS]
+    images = []
+    for c in CHARS:
+        try:
+            img = create_image(c, font_path)
+            images.append(img)
+        except OSError as e:
+            print(f"Skipping character '{c}' for font {font_path}: {e}")
     save_ubyte(images, out_file)
     print(f"[{index}/{len(all_fonts)}]: Saved {len(images)} images for font {font_name} at {out_file}")
