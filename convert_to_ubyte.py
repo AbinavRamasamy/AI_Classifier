@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/Users/abinav/Documents/Projects/AI_Classifier/.venv/bin/python
 import os
 import string
 

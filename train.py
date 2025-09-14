@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/Users/abinav/Documents/Projects/AI_Classifier/.venv/bin/python
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
