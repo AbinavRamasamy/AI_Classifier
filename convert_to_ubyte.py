@@ -58,7 +58,7 @@ def create_scaled_rotated_image(char, font_path):
     draw.text(((int(IMG_SIZE * factor) - w) / 2, (int(IMG_SIZE * factor) - h) / 2), char, fill=255, font=font)
 
     image = image.rotate(angle, expand=True)
-    image = image.resize((IMG_SIZE, IMG_SIZE), Image.ANTIALIAS)
+    image = image.resize((IMG_SIZE, IMG_SIZE), Image.Resampling.LANCZOS)
     
     return np.array(image, dtype=np.uint8)
 
