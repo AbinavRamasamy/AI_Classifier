@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -15,8 +16,8 @@ if __name__ == "__main__":
 
     # Load dataset
     train_dataset = BinaryFontDataset(
-    emnist_image_file="Datasets/EMNIST/emnist_source_files/emnist-byclass-train-images-idx3-ubyte",
-    font_ubyte_folder="Datasets/GoogleFonts-ubytes/Train"
+    emnist_image_file="Datasets/EMNIST/emnist-byclass-train-images-idx3-ubyte",
+    font_ubyte_folder="Datasets/GoogleFonts/Train"
     )
 
     # Loss and optimizer
@@ -29,6 +30,7 @@ if __name__ == "__main__":
     # Create DataLoader
     train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
     
+    # Training loop
     for epoch in range(num_epochs):
         running_loss = 0.0
 
@@ -53,8 +55,8 @@ if __name__ == "__main__":
     all_preds = []
 
     test_dataset = BinaryFontDataset(
-    emnist_image_file="Datasets/EMNIST/emnist_source_files/emnist-byclass-test-images-idx3-ubyte",
-    font_ubyte_folder="Datasets/GoogleFonts-ubytes/Test"
+    emnist_image_file="Datasets/EMNIST/emnist-byclass-test-images-idx3-ubyte",
+    font_ubyte_folder="Datasets/GoogleFonts/Test"
     )
     test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
 
