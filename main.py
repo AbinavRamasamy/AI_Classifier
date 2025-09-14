@@ -2,6 +2,7 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
+from sklearn.metrics import precision_score, recall_score, f1_score
 
 from classifier_CNN import BinaryCNN
 from Dataset import BinaryFontDataset
@@ -74,4 +75,15 @@ if __name__ == "__main__":
     all_preds = torch.cat(all_preds)
 
     accuracy = (all_preds == all_labels).float().mean()
-    print(f"Test Accuracy: {accuracy:.4f}")
+    print(f"\nTest Accuracy: {accuracy:.4f}")
+
+    y_true = all_labels.numpy()
+    y_pred = all_preds.numpy()
+
+    precision = precision_score(y_true, y_pred)
+    recall = recall_score(y_true, y_pred)
+    f1 = f1_score(y_true, y_pred)
+
+    print(f"Precision: {precision:.4f}")
+    print(f"Recall: {recall:.4f}")
+    print(f"F1 Score: {f1:.4f}")
