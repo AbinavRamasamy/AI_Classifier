@@ -32,6 +32,7 @@ if __name__ == "__main__":
     
     # Training loop
     for epoch in range(num_epochs):
+        print(f"Running epoch {epoch+1}/{num_epochs}")
         running_loss = 0.0
 
         for images, labels in train_loader:
